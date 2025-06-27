@@ -113,7 +113,7 @@ export default function CreateUser() {
     const user = { username };
     console.log(user);
 
-    axios.post('http://localhost:5000/users/add', user)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/add`, user)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 

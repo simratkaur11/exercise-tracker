@@ -396,7 +396,7 @@ export default function EditExercise() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/exercises/${id}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}${id}`)
       .then(response => {
         setUsername(response.data.username);
         setDescription(response.data.description);
@@ -405,7 +405,7 @@ export default function EditExercise() {
       })
       .catch(error => console.log(error));
 
-    axios.get('http://localhost:5000/users/')
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/`)
       .then(response => {
         if (response.data.length > 0) {
           setUsers(response.data.map(user => user.username));
@@ -422,7 +422,7 @@ export default function EditExercise() {
       date
     };
 
-    axios.post(`http://localhost:5000/exercises/update/${id}`, updatedExercise)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/exercises/update/${id}`, updatedExercise)
       .then(res => console.log(res.data));
 
     navigate('/');
